@@ -11,6 +11,7 @@ public class UseCaseBase {
 
     @BeforeAll
     public static void setupMain() {
+        System.setProperty("webdriver.http.factory", "jdk-http-client");
         page = new BasePage();
         webDriver = SharedDriver.getWebDriver(SharedDriver.Broswer.CHROME);
         page.setWebDriver(webDriver);

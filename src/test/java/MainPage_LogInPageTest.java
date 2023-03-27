@@ -25,6 +25,7 @@ public class MainPage_LogInPageTest extends UseCaseBase {
         Boolean success = mainPage.isLogoVisible();
         mainPage.takeScreenshot("MainPageTest");
         assertTrue(success);
+        //Coming soon image is NOT on the screen.
     }
     @Test
     public void openLoginPageTest(){
@@ -32,6 +33,7 @@ public class MainPage_LogInPageTest extends UseCaseBase {
         MainPage_LogInPage mainPage_LogInPage = mainPage.openLoginPage();
         boolean isLoaded = mainPage_LogInPage.isLogoVisible();
         assertTrue(isLoaded);
+        //There isn’t a login option.
     }
     @Test
     public void openFindJobPageTest(){
@@ -76,5 +78,31 @@ public class MainPage_LogInPageTest extends UseCaseBase {
         // The results list is displayed.
         boolean isLoaded = FindJobPage.isPageTitleVisible();
         assertTrue(isLoaded);
+        //The results list does not contain a display of jobs related to the given text.
     }
+
+    //Search for job keywords.
+    @Test
+    public void useJobsTextBox() throws InterruptedException {
+        logger.info("Search for a jobs in the 'jobs,keywords or company' Text Box");
+        //Find the element (text box).
+        WebElement JobsTextBox = webDriver.findElement(By.xpath(Jobs_TextBox));
+        assertNotNull(JobsTextBox);
+        //Send the text to the element.
+        JobsTextBox.sendKeys("QA, Developer, Project Manager");
+        //Confirm that the element got the text.
+        String textBoxAttribute = JobsTextBox.getAttribute("value");
+        assertEquals("QA, Developer, Project Manager", textBoxAttribute);
+        //Click on the Submit button.
+        WebElement SubmitButton = webDriver.findElement(By.xpath(Submit_Button));
+        Thread.sleep(3000);
+        SubmitButton.click();
+        // Give it a moment.
+        Thread.sleep(3000);
+        // The results list is displayed.
+        boolean isLoaded = FindJobPage.isPageTitleVisible();
+        assertTrue(isLoaded);
+        //The results list does not contain a display of jobs related to the given text.
+    }
+
 }

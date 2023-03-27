@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 
 public class BasePage {
     public static final Logger logger = LogManager.getLogger(BasePage.class);
@@ -14,8 +15,9 @@ public class BasePage {
     protected static WebDriver webDriver;
     protected static WebDriverWait wait;
     public void setWebDriver(WebDriver webDriver){
+        System.setProperty("webdriver.http.factory", "jdk-http-client");
         this.webDriver = webDriver;
-        wait = new WebDriverWait(webDriver, 5);
+        wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
     }
 
     protected void clickElementByXpath(String xpath){

@@ -11,6 +11,7 @@ public class MainPage_LogInPage extends BasePage {
 
     //Search jobs & location part.
     public static final String Location_TextBox = "//input[@placeholder = 'Location']";
+    public static final String Jobs_TextBox = "//input[@placeholder = 'Search jobs, keywords or company']";
     public static final String Submit_Button = "//a[text() = ' Submit ']";
 
 
